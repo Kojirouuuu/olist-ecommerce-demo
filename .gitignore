@@ -42,3 +42,5 @@ next-env.d.ts
 
 # datasets
 archive/
+
+/generated/prisma
