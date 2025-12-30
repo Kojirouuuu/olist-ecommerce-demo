@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface ProductCardProps {
   id: string;
   categoryName: string | null;
@@ -7,7 +9,7 @@ interface ProductCardProps {
 
 export function ProductCard({ id, categoryName, description, price }: ProductCardProps) {
   return (
-    <div>
+    <Link href={`/products/${id}`}>
       <div>
         <h3>{description || "No description"}</h3>
         {categoryName && <p>{categoryName}</p>}
@@ -15,7 +17,7 @@ export function ProductCard({ id, categoryName, description, price }: ProductCar
       <div>
         <p>Price: {price ? `R$ ${price}` : "No price"}</p>
       </div>
-    </div>
+    </Link>
   );
 }
 
