@@ -42,3 +42,9 @@ next-env.d.ts
 
 # datasets
 archive/
+
+# generated prisma files
+/generated/prisma
+
+# local postgres data
+/postgres_data
