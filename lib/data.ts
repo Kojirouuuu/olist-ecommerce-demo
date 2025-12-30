@@ -22,3 +22,30 @@ export async function getProductById(id: string) {
 
     return product;
 }
+
+export async function getProductWithPrice(id: string) {
+    const product = await prisma.product.findUnique({
+        where: { id },
+        include: {
+            orderItems: {
+                take: 1,
+                orderBy: { price: "desc" }, // 最新または最高価格を取得
+                select: {
+                    price: true,
+                    freight: true,
+                }
+            }
+        }
+    })
+
+    if (!product) return null;
+
+    const price = product.orderItems[0]?.price ?? 0;
+    const freightValue = product.orderItems[0]?.freight ?? 0;
+
+    return {
+        ...product,
+        price,
+        freightValue,
+    }
+}
